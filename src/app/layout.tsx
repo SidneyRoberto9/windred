@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
-
+import Favicon from '/public/favicon.ico';
 import { PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 
-import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Header } from '@/components/Header';
 
@@ -14,6 +13,15 @@ export const metadata: Metadata = {
   title: 'Windred',
   description:
     'Find anime easily. Quick, precise searches. Discover your favorites. Enjoy in seconds!',
+  icons: [{ rel: 'icon', url: Favicon.src }],
+  openGraph: {
+    images: {
+      url: Favicon.src,
+      width: 1200,
+      height: 630,
+      alt: 'Windred',
+    },
+  },
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
