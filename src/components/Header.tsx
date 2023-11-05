@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export function Header() {
   return (
-    <header className="py-4 flex items-center justify-between">
+    <header className="sm:px-0 px-4 py-4 flex items-center justify-between">
       <Link
         href={'/'}
         prefetch={false}
