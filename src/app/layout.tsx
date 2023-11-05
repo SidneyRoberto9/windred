@@ -19,8 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body
-        className={cn('min-h-screen max-w-5xl bg-background antialiased m-auto', inter.className)}>
+      <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
           <Header />
           {children}
