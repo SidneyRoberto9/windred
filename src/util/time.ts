@@ -57,5 +57,10 @@ function getTime(time: moment.Duration) {
     responseString += `${seconds} seconds`;
   }
 
+  if (responseString.endsWith(', ')) {
+    responseString = responseString.slice(0, -2);
+    responseString = responseString + '';
+  }
+
   return responseString;
 }
