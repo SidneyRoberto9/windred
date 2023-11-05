@@ -16,6 +16,9 @@ export function AnimeSearch() {
   const query = useRef<HTMLInputElement>(null);
 
   async function handleSearch() {
+    setAnimes([]);
+    setDuration(null);
+
     const queryValue: string = query.current?.value as string;
     const { data } = await searchAnime(queryValue);
 
@@ -24,8 +27,6 @@ export function AnimeSearch() {
 
   async function handleEnter(e: KeyboardEvent<HTMLInputElement>) {
     if (e.code !== 'Enter') {
-      setAnimes([]);
-      setDuration(null);
       return;
     }
 
@@ -37,15 +38,10 @@ export function AnimeSearch() {
     const episodes = selectedAnime.episodes;
 
     const duration = getDuration(durationString, episodes);
-    console.log(duration);
 
     if (duration !== null) {
       const timeString = getTimeString(duration, episodes);
       setDuration(timeString);
-
-      if (query.current) {
-        query.current.value = '';
-      }
     } else {
       setDuration(undefined);
     }
@@ -63,13 +59,14 @@ export function AnimeSearch() {
         />
         <Input type="text" ref={query} onKeyDown={handleEnter} />
       </div>
+
       {animes.length > 0 && (
-        <div className="flex flex-col mt-2 ">
+        <div className="flex flex-col my-4 rounded-md overflow-hidden">
           {animes.map((anime) => (
             <div
               key={anime.mal_id}
               onClick={() => handleCalculate(anime)}
-              className="border w-full cursor-pointer">
+              className="border-2 w-full cursor-pointer">
               <div className="grid grid-cols-5 gap-4 overflow-hidden p-2 ">
                 <img
                   alt={anime.title}
